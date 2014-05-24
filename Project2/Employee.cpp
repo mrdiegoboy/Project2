@@ -9,7 +9,10 @@
 #include "Employee.h"
 
 using namespace std;
-
+Employee::Employee()
+{
+    access=0;
+}
 string Employee::getName()
 {
     return name;
@@ -41,4 +44,40 @@ bool Employee::checkPassword(string pass)
 void Employee::setPassword(string pass)
 {
     password=pass;
+}
+int Employee::accessLevel()
+{
+    return access;
+}
+void Employee::setName(string n)
+{
+    this->name=n;
+}
+void Employee::setAddress(string address)
+{
+    this->address=address;
+}
+void Employee::setCity(string city)
+{
+    this->city=city;
+}
+void Employee::setState(string state)
+{
+    this->state=state;
+}
+void Employee::setZip(int zip)
+{
+    this->zip=zip;
+}
+void Employee::setEmpID(int emp)
+{
+    this->employee_id=emp;
+}
+void Employee::resetPassword()
+{
+    password="start";
+}
+void Employee::setWage(float w)
+{
+    wage=w;
 }

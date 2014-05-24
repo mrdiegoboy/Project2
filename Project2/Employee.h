@@ -22,7 +22,9 @@ protected:
     int employee_id;
     string password;
     float wage;
+    int access;
 public:
+    Employee();
     string getName();
     string getAddress();
     string getCity();
@@ -31,6 +33,15 @@ public:
     int getEmpID();
     bool checkPassword(string);
     void setPassword(string);
+    int accessLevel();
+    void setName(string);
+    void setAddress(string);
+    void setCity(string);
+    void setState(string);
+    void setZip(int);
+    void setEmpID(int);
+    void setWage(float);
+    void resetPassword();
 };
 
 #endif	/* EMPLOYEE_H */
