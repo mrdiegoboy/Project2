@@ -5,6 +5,7 @@
  * Created on May 23, 2014, 11:05 PM
  */
 #include <iostream>
+#include <vector>
 #include "Employee.h"
 #include "Supervisor.h"
 using namespace std;
@@ -13,13 +14,19 @@ void Menu();
 int getN();
 void def(int);
 void addEmployee();
-/*void problem2();
+void addSupervisor();
+/*
 void problem3();
 void problem4();
 void problem5();
 void problem6();
 void problem7();
- * */
+ 
+             cout << "Login\n" << endl;
+            cout << "Employee ID: ";
+            cin >> id;
+            cout << "Password: ";
+            cin >> pass;*/
 
 
     int main(int argv,char *argc[])
@@ -27,16 +34,11 @@ void problem7();
 	int inN, id;
         string pass;
         do{
-            cout << "Login\n" << endl;
-            cout << "Employee ID: ";
-            cin >> id;
-            cout << "Password: ";
-            cin >> pass;
             Menu();
             inN=getN();
          switch(inN){
           case 1:    addEmployee();break;
-          /*case 2:    problem2();break;
+          case 2:    addSupervisor();break;/*
           case 3:    problem3();break;
           case 4:    problem4();break;
           case 5:    problem5();break;
@@ -49,7 +51,7 @@ void problem7();
     void Menu()
     {
            cout<<"Type 1 for new employee"<<endl;
-           cout<<"Type 2 for problem 2"<<endl;
+           cout<<"Type 2 for new supervisor"<<endl;
            cout<<"Type 3 for problem 3"<<endl;
            cout<<"Type 4 for problem 4"<<endl;
            cout<<"Type 5 for problem 5"<<endl;
@@ -63,6 +65,7 @@ void problem7();
            cin>>inN;
            return inN;
     }
+    //Function to add an employee to system
     void addEmployee()
     {
         Employee *emp=new Employee();
@@ -86,17 +89,53 @@ void problem7();
         cout << "Zip: ";
         cin >> nums;
         emp->setZip(nums);
+        cout << "Department: (PC or Mobile): ";
+        cin >> words;
+        emp->setDept(words);
         emp->resetPassword();
         cout << "Wage: ";
         cin >> dec;
         emp->setWage(dec);
+        cout << "Employee successfully created\nEmployee ID will"
+                "be " << Employee::objectCount;
+        emp->setEmpID(Employee::objectCount);
         
     }
-    /*void problem2()
+    void addSupervisor()
     {
-           cout<<"In problem # 2"<<endl<<endl;
+        Supervisor *sup=new Supervisor();
+        string words;
+        int nums;
+        float dec;
+        cout << "Please enter supervisor first and last name: " << endl;
+        std::cin.sync(); 
+        std::cin.get(); 
+        getline (cin, words);
+        sup->setName(words);
+        cout << "Please enter address: " << endl;
+        getline (cin, words);
+        sup->setAddress(words);
+        cout << "Please enter city" << endl;
+        cin >> words;
+        sup->setCity(words);
+        cout << "State: ";
+        cin >> words;
+        sup->setState(words);
+        cout << "Zip: ";
+        cin >> nums;
+        sup->setZip(nums);
+        cout << "Department: (PC or Mobile): ";
+        cin >> words;
+        sup->setDept(words);
+        sup->resetPassword();
+        cout << "Wage: ";
+        cin >> dec;
+        sup->setWage(dec);
+        cout << "Employee successfully created\nEmployee ID will"
+                "be " << Employee::objectCount;
+        sup->setEmpID(Employee::objectCount);
     }
-    void problem3()
+    /*void problem3()
     {
            cout<<"In problem # 3"<<endl<<endl;
     }

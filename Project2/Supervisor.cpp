@@ -1,7 +1,7 @@
 /* 
  * File:   Supervisor.h
  * Author: Diego
- *implementation for supervisor
+ *implementation for supervisor inherits from employee
  * Created on May 23, 2014, 11:49 PM
  */
 

@@ -1,7 +1,7 @@
 /* 
  * File:   Supervisor.h
  * Author: Diego
- *Blueprint for supervisor
+ *Blueprint for supervisor inherits from employee
  * Created on May 23, 2014, 11:49 PM
  */
 
@@ -16,9 +16,14 @@ using namespace std;
 class Supervisor : public Employee
 {
 private:
-    double bonus;
+    float bonus;
+    float budget;
 public:
     Supervisor();
+    void setBonus(float);
+    void setBudget(float);
+    void getBonus();
+    void getBudget();
 };
 
 #endif	/* SUPERVISOR_H */

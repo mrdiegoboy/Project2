@@ -9,9 +9,13 @@
 #include "Employee.h"
 
 using namespace std;
+int Employee::objectCount=1;
+
 Employee::Employee()
 {
+    objectCount++;
     access=0;
+    sales=0;
 }
 string Employee::getName()
 {
@@ -80,4 +84,20 @@ void Employee::resetPassword()
 void Employee::setWage(float w)
 {
     wage=w;
+}
+void Employee::addSale(float sale)
+{
+    sales+=sale;
+}
+float Employee::getSales()
+{
+    return sales;
+}
+void Employee::setDept(string department)
+{
+    dept=department;
+}
+string Employee::getDept()
+{
+    return dept;
 }

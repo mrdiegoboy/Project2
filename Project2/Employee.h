@@ -23,7 +23,10 @@ protected:
     string password;
     float wage;
     int access;
+    float sales;
+    string dept;
 public:
+    static int objectCount;
     Employee();
     string getName();
     string getAddress();
@@ -42,6 +45,10 @@ public:
     void setEmpID(int);
     void setWage(float);
     void resetPassword();
+    void addSale(float);
+    float getSales();
+    void setDept(string);
+    string getDept();
 };
 
 #endif	/* EMPLOYEE_H */
