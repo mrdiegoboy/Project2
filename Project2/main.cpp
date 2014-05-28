@@ -6,8 +6,11 @@
  */
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "Employee.h"
 #include "Supervisor.h"
+#include "RetailItem.h"
+
 using namespace std;
 
 void Menu();
@@ -15,6 +18,7 @@ int getN();
 void def(int);
 void addEmployee();
 void addSupervisor();
+RetailItem* loadInventory();
 /*
 void problem3();
 void problem4();
@@ -31,6 +35,9 @@ void problem7();
 
     int main(int argv,char *argc[])
     {
+        RetailItem *inventory;
+        inventory=loadInventory();
+        
 	int inN, id;
         string pass;
         do{
@@ -160,5 +167,38 @@ void problem7();
     {
            cout<<"You typed "<<inN<<" to exit the program"<<endl;
     }
+    RetailItem* loadInventory()
+    {
+        int sku;
+        string desc;
+        float price;
+        int aoh;
+        int num_lines=0;
+        string line;
+        ifstream myfile("inventory.txt");
+        if(myfile.fail())
+        {
+            cout << "Error opening the file\n";
+        }
+        while(getline(myfile, line))
+            ++num_lines;
+        myfile.close();
+        myfile.open("inventory.txt");
+        RetailItem *r = new RetailItem[num_lines];
+        cout << "Number of lines " << num_lines << endl;
+        for(int i=0;i<num_lines;i++){
+            while (myfile >> r[i])
+            {  
+                cout << r[i].getSKU() << " ";
+                cout << r[i].getDesc()<< " ";
+                cout << r[i].getPrice()<< " ";
+                cout << r[i].getAOH()<< " ";
+                cout << endl;
+            }
+        }
+        return r;
+        //1002 SAMSUNG560GBHD 159.99 20
+    }
+
 
 

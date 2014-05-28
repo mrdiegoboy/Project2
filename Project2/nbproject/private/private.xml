@@ -13,9 +13,11 @@
         </group>
         <group name="project 2">
             <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/Employee.h</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/RetailItem.cpp</file>
             <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/Employee.cpp</file>
             <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/Supervisor.h</file>
             <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/main.cpp</file>
+            <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/RetailItem.h</file>
             <file>file:/C:/Users/Diego/Documents/GitHub/Project2/Project2/Supervisor.cpp</file>
         </group>
     </open-files>
