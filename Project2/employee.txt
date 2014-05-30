@@ -1,4 +1,3 @@
-1
 Diego Montelongo
 12533 Black Horse St
 Eastvale
@@ -8,4 +7,3 @@ CA
 1234
 10.00
 0
-PC

@@ -18,10 +18,10 @@ int getN();
 void def(int);
 void addEmployee();
 void addSupervisor();
-RetailItem* loadInventory();
-Employee* loadEmployees();
+RetailItem** loadInventory();
+Employee** loadEmployees();
+void Sale(Employee **, RetailItem **);
 /*
-void problem3();
 void problem4();
 void problem5();
 void problem6();
@@ -36,9 +36,10 @@ void problem7();
 
     int main(int argv,char *argc[])
     {
-        RetailItem *inventory;
+        RetailItem **inventory;
+        Employee **employees;
         inventory=loadInventory();
-        
+        employees=loadEmployees();
 	int inN, id;
         string pass;
         do{
@@ -46,8 +47,8 @@ void problem7();
             inN=getN();
          switch(inN){
           case 1:    addEmployee();break;
-          case 2:    addSupervisor();break;/*
-          case 3:    problem3();break;
+          case 2:    addSupervisor();break;
+          case 3:    Sale(employees,inventory);break;/*
           case 4:    problem4();break;
           case 5:    problem5();break;
           case 6:    problem6();break;
@@ -60,7 +61,7 @@ void problem7();
     {
            cout<<"Type 1 for new employee"<<endl;
            cout<<"Type 2 for new supervisor"<<endl;
-           cout<<"Type 3 for problem 3"<<endl;
+           cout<<"Type 3 to add a sale"<<endl;
            cout<<"Type 4 for problem 4"<<endl;
            cout<<"Type 5 for problem 5"<<endl;
            cout<<"Type 6 for problem 6"<<endl;
@@ -139,11 +140,31 @@ void problem7();
         sup->setWage(dec);
         sup->setEmpID(Employee::objectCount);
     }
-    /*void problem3()
+    void Sale(Employee **e, RetailItem **r)
     {
-           cout<<"In problem # 3"<<endl<<endl;
+        int emp_id;
+        int SKU;
+        cout<<"Please enter your employee id: ";
+        cin >> emp_id;
+        cout << "Enter item SKU " << endl;
+        cin >> SKU;
+        for(int i=0; i<r[i]->objectCount;i++)
+        {
+            if(r[i]->getSKU()==SKU)
+            {
+                for(int i=0; i<e[i]->objectCount; i++)
+                {
+                    if(e[i]->getEmpID()==emp_id){
+                        e[i]->addSale(r[i]->getPrice());
+                        cout << "Adding sale of" << r[i]->getDesc() << "for " 
+                            << r[i]->getPrice() << endl;
+                        r[i]->sold();
+                    }
+                }
+            }
+        }
     }
-    void problem4()
+    /*void problem4()
     {
            cout<<"In problem # 4"<<endl<<endl;
     }
@@ -164,7 +185,7 @@ void problem7();
     {
            cout<<"You typed "<<inN<<" to exit the program"<<endl;
     }
-    RetailItem* loadInventory()
+    RetailItem** loadInventory()
     {
         int num_lines=0;
         string line;
@@ -177,24 +198,20 @@ void problem7();
             ++num_lines;
         myfile.close();
         myfile.open("inventory.txt");
-        RetailItem *r = new RetailItem[num_lines];
-        cout << "Number of lines " << num_lines << endl;
+        RetailItem **r = new RetailItem*[num_lines];
         for(int i=0;i<num_lines;i++){
-            while (myfile >> r[i])
-            {  
-                cout << r[i].getSKU() << " ";
-                cout << r[i].getDesc()<< " ";
-                cout << r[i].getPrice()<< " ";
-                cout << r[i].getAOH()<< " ";
-                cout << endl;
+            r[i]=new RetailItem();
+            while (myfile >> r[i]){
+                cout << r[i]->getDesc();
             }
         }
+        
         myfile.close();
         return r;
         //1002 SAMSUNG560GBHD 159.99 20
     }
     //read from employee to load from program
-    Employee* loadEmployees()
+    Employee** loadEmployees()
     {
         int num_lines=0;
         int num_employees;
@@ -206,14 +223,27 @@ void problem7();
         }
         while(getline(myfile, line))
             ++num_lines;
-        num_employees=num_lines/10;
+        num_employees=num_lines/9;
         myfile.close();
         myfile.open("employee.txt");
-        Employee *e = new Employee[num_employees];
+        Employee **e = new Employee*[num_employees];
+        cout << num_employees;
         for(int i=0;i<num_employees;i++)
         {
-            
+            e[i]=new Employee();
+            getline(myfile, line);
+            e[i]->setName(line);
+            getline(myfile, line);
+            e[i]->setAddress(line);
+            while (myfile >> e[i])
+            {
+                cout << e[i]->getName() << " ";
+                cout << e[i]->getAddress()<< " ";
+                cout << e[i]->getCity()<< " ";
+                cout << endl;
+            }
         }
+        return e;
     }
 
 

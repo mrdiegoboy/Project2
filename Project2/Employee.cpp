@@ -9,13 +9,24 @@
 #include "Employee.h"
 
 using namespace std;
-int Employee::objectCount=1;
+int Employee::objectCount=0;
 
 Employee::Employee()
 {
     objectCount++;
     access=0;
     sales=0;
+}
+istream& operator >> (istream& in, Employee* e)
+{
+    in >> e->city;
+    in >> e->state;
+    in >> e->zip;
+    in >> e->employee_id;
+    in >> e->password;
+    in >> e->wage;
+    in >> e->access;
+    return in;
 }
 string Employee::getName()
 {

@@ -25,6 +25,7 @@ protected:
     int access;
     float sales;
 public:
+    friend istream& operator >> (istream&, Employee*);
     static int objectCount;
     Employee();
     string getName();

@@ -8,13 +8,18 @@
 #include <iostream>
 #include "RetailItem.h"
 using namespace std;
-istream& operator >> (istream& in, RetailItem& r)
+int RetailItem::objectCount=0;
+istream& operator >> (istream& in, RetailItem* r)
 {
-    in >> r.SKU;
-    in >> r.description;
-    in >> r.price;
-    in >> r.AOH;
+    in >> r->SKU;
+    in >> r->description;
+    in >> r->price;
+    in >> r->AOH;
     return in;
+}
+RetailItem::RetailItem()
+{
+    objectCount++;
 }
 void RetailItem::setSKU(int s)
 {
@@ -47,6 +52,10 @@ int RetailItem::getAOH()
 void RetailItem::setAOH(int a)
 {
     AOH=a;
+}
+void RetailItem::sold()
+{
+    AOH--;
 }
 
 
