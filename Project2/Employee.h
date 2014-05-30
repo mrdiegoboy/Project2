@@ -24,7 +24,6 @@ protected:
     float wage;
     int access;
     float sales;
-    string dept;
 public:
     static int objectCount;
     Employee();
@@ -47,8 +46,6 @@ public:
     void resetPassword();
     void addSale(float);
     float getSales();
-    void setDept(string);
-    string getDept();
 };
 
 #endif	/* EMPLOYEE_H */

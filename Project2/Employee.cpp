@@ -93,11 +93,4 @@ float Employee::getSales()
 {
     return sales;
 }
-void Employee::setDept(string department)
-{
-    dept=department;
-}
-string Employee::getDept()
-{
-    return dept;
-}
+

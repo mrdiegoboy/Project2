@@ -19,6 +19,7 @@ void def(int);
 void addEmployee();
 void addSupervisor();
 RetailItem* loadInventory();
+Employee* loadEmployees();
 /*
 void problem3();
 void problem4();
@@ -98,7 +99,6 @@ void problem7();
         emp->setZip(nums);
         cout << "Department: (PC or Mobile): ";
         cin >> words;
-        emp->setDept(words);
         emp->resetPassword();
         cout << "Wage: ";
         cin >> dec;
@@ -133,13 +133,10 @@ void problem7();
         sup->setZip(nums);
         cout << "Department: (PC or Mobile): ";
         cin >> words;
-        sup->setDept(words);
         sup->resetPassword();
         cout << "Wage: ";
         cin >> dec;
         sup->setWage(dec);
-        cout << "Employee successfully created\nEmployee ID will"
-                "be " << Employee::objectCount;
         sup->setEmpID(Employee::objectCount);
     }
     /*void problem3()
@@ -169,10 +166,6 @@ void problem7();
     }
     RetailItem* loadInventory()
     {
-        int sku;
-        string desc;
-        float price;
-        int aoh;
         int num_lines=0;
         string line;
         ifstream myfile("inventory.txt");
@@ -196,8 +189,31 @@ void problem7();
                 cout << endl;
             }
         }
+        myfile.close();
         return r;
         //1002 SAMSUNG560GBHD 159.99 20
+    }
+    //read from employee to load from program
+    Employee* loadEmployees()
+    {
+        int num_lines=0;
+        int num_employees;
+        string line;
+        ifstream myfile("employee.txt");
+        if(myfile.fail())
+        {
+            cout << "Error opening the file\n";
+        }
+        while(getline(myfile, line))
+            ++num_lines;
+        num_employees=num_lines/10;
+        myfile.close();
+        myfile.open("employee.txt");
+        Employee *e = new Employee[num_employees];
+        for(int i=0;i<num_employees;i++)
+        {
+            
+        }
     }
 
 
