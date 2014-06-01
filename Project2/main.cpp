@@ -18,8 +18,10 @@ int getN();
 void def(int);
 void addEmployee();
 void addSupervisor();
-RetailItem** loadInventory();
-Employee** loadEmployees();
+//RetailItem** loadInventory();
+void loadInventory(vector<RetailItem>&);
+//Employee** loadEmployees();
+void loadEmployees(vector<Employee>&);
 void Sale(Employee **, RetailItem **);
 /*
 void problem4();
@@ -36,10 +38,18 @@ void problem7();
 
     int main(int argv,char *argc[])
     {
-        RetailItem **inventory;
-        Employee **employees;
-        inventory=loadInventory();
-        employees=loadEmployees();
+        vector<Employee> emps;
+        vector<RetailItem> inventory;
+        loadEmployees(emps);
+        loadInventory(inventory);
+        for(int i=0; i<emps.size();i++)
+        {
+            emps[i].getName();
+        }
+        for(int i=0; i<inventory.size();i++)
+        {
+            cout << inventory[i].getSKU() << endl;
+        }
 	int inN, id;
         string pass;
         do{
@@ -47,8 +57,8 @@ void problem7();
             inN=getN();
          switch(inN){
           case 1:    addEmployee();break;
-          case 2:    addSupervisor();break;
-          case 3:    Sale(employees,inventory);break;/*
+          case 2:    addSupervisor();break;/*
+          case 3:    Sale(employees,inventory);break;
           case 4:    problem4();break;
           case 5:    problem5();break;
           case 6:    problem6();break;
@@ -185,7 +195,7 @@ void problem7();
     {
            cout<<"You typed "<<inN<<" to exit the program"<<endl;
     }
-    RetailItem** loadInventory()
+    /*RetailItem** loadInventory()
     {
         int num_lines=0;
         string line;
@@ -202,16 +212,15 @@ void problem7();
         for(int i=0;i<num_lines;i++){
             r[i]=new RetailItem();
             while (myfile >> r[i]){
-                cout << r[i]->getDesc();
+                cout << r[i]->getSKU() << endl;
             }
         }
         
         myfile.close();
         return r;
         //1002 SAMSUNG560GBHD 159.99 20
-    }
-    //read from employee to load from program
-    Employee** loadEmployees()
+    }*/
+    void loadEmployees(vector<Employee> &emps)
     {
         int num_lines=0;
         int num_employees;
@@ -226,24 +235,53 @@ void problem7();
         num_employees=num_lines/9;
         myfile.close();
         myfile.open("employee.txt");
-        Employee **e = new Employee*[num_employees];
-        cout << num_employees;
+        Employee e[num_employees];
+        cout << num_employees << "NUM EMPLOYEES";
         for(int i=0;i<num_employees;i++)
         {
-            e[i]=new Employee();
             getline(myfile, line);
-            e[i]->setName(line);
+            e[i].setName(line);
             getline(myfile, line);
-            e[i]->setAddress(line);
+            e[i].setAddress(line);
             while (myfile >> e[i])
             {
-                cout << e[i]->getName() << " ";
-                cout << e[i]->getAddress()<< " ";
-                cout << e[i]->getCity()<< " ";
+                cout << e[i].getName() << " ";
+                cout << e[i].getAddress()<< " ";
+                cout << e[i].getCity()<< " ";
                 cout << endl;
             }
+            emps.push_back(e[i]);
         }
-        return e;
+    }
+    void loadInventory(vector<RetailItem> &item)
+    {
+        int num_lines=0;
+        string line;
+        int sku, AOH;
+        string desc;
+        float price;
+        ifstream myfile("inventory.txt");
+        if(myfile.fail())
+        {
+            cout << "Error opening the file\n";
+        }
+        while(getline(myfile, line))
+            ++num_lines;
+        myfile.close();
+        myfile.open("inventory.txt");
+        RetailItem r[num_lines];
+        for(int i=0;i<num_lines;i++){
+            myfile >> sku >> desc >> price >> AOH;
+            r[i].setSKU(sku); r[i].setDesc(desc); r[i].setPrice(price); r[i].setAOH(AOH);
+            /*while (myfile >> r[i]){
+                a[i]=r[i];
+                cout << a[i].getSKU() << endl;
+            }*/
+            item.push_back(r[i]);
+        }
+   
+        myfile.close();
+        //1002 SAMSUNG560GBHD 159.99 20
     }
 
 

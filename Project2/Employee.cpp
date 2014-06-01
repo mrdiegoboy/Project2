@@ -17,15 +17,15 @@ Employee::Employee()
     access=0;
     sales=0;
 }
-istream& operator >> (istream& in, Employee* e)
+istream& operator >> (istream& in, Employee e)
 {
-    in >> e->city;
-    in >> e->state;
-    in >> e->zip;
-    in >> e->employee_id;
-    in >> e->password;
-    in >> e->wage;
-    in >> e->access;
+    in >> e.city;
+    in >> e.state;
+    in >> e.zip;
+    in >> e.employee_id;
+    in >> e.password;
+    in >> e.wage;
+    in >> e.access;
     return in;
 }
 string Employee::getName()

@@ -19,7 +19,7 @@ private:
     float price;
     int AOH;
 public:
-    friend istream& operator >> (istream&, RetailItem*);
+    //friend istream& operator >> (istream&, RetailItem);
     static int objectCount;
     RetailItem();
     void setSKU(int);
