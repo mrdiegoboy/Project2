@@ -18,14 +18,12 @@ int getN();
 void def(int);
 void addEmployee();
 void addSupervisor();
-//RetailItem** loadInventory();
 void loadInventory(vector<RetailItem>&);
-//Employee** loadEmployees();
 void loadEmployees(vector<Employee>&);
-void Sale(Employee **, RetailItem **);
+void viewEmployees(vector<Employee>);
+void viewInventory(vector<RetailItem>);
+void Sale(vector<RetailItem>&, vector<Employee>&);
 /*
-void problem4();
-void problem5();
 void problem6();
 void problem7();
  
@@ -42,14 +40,6 @@ void problem7();
         vector<RetailItem> inventory;
         loadEmployees(emps);
         loadInventory(inventory);
-        for(int i=0; i<emps.size();i++)
-        {
-            emps[i].getName();
-        }
-        for(int i=0; i<inventory.size();i++)
-        {
-            cout << inventory[i].getSKU() << endl;
-        }
 	int inN, id;
         string pass;
         do{
@@ -57,23 +47,23 @@ void problem7();
             inN=getN();
          switch(inN){
           case 1:    addEmployee();break;
-          case 2:    addSupervisor();break;/*
-          case 3:    Sale(employees,inventory);break;
-          case 4:    problem4();break;
-          case 5:    problem5();break;
-          case 6:    problem6();break;
-          case 7:    problem7();break;*/
+          case 2:    addSupervisor();break;
+          case 3:    Sale(inventory,emps);break;
+          case 4:    viewEmployees(emps);break;
+          case 5:    viewInventory(inventory);break;
+          case 6:    ;break;
+          case 7:    ;break;
           default:   def(inN);}
         }while(inN<8);
         return 1;
     }
     void Menu()
     {
-           cout<<"Type 1 for new employee"<<endl;
+           cout<<"\nType 1 for new employee"<<endl;
            cout<<"Type 2 for new supervisor"<<endl;
            cout<<"Type 3 to add a sale"<<endl;
-           cout<<"Type 4 for problem 4"<<endl;
-           cout<<"Type 5 for problem 5"<<endl;
+           cout<<"Type 4 View Employees"<<endl;
+           cout<<"Type 5 View Inventory"<<endl;
            cout<<"Type 6 for problem 6"<<endl;
            cout<<"Type 7 for problem 7"<<endl;
            cout<<"Type 8 to exit \n"<<endl;
@@ -150,38 +140,21 @@ void problem7();
         sup->setWage(dec);
         sup->setEmpID(Employee::objectCount);
     }
-    void Sale(Employee **e, RetailItem **r)
+    
+    void viewEmployees(vector<Employee> e)
     {
-        int emp_id;
-        int SKU;
-        cout<<"Please enter your employee id: ";
-        cin >> emp_id;
-        cout << "Enter item SKU " << endl;
-        cin >> SKU;
-        for(int i=0; i<r[i]->objectCount;i++)
+        for(int i=0;i<e.size();i++)
         {
-            if(r[i]->getSKU()==SKU)
-            {
-                for(int i=0; i<e[i]->objectCount; i++)
-                {
-                    if(e[i]->getEmpID()==emp_id){
-                        e[i]->addSale(r[i]->getPrice());
-                        cout << "Adding sale of" << r[i]->getDesc() << "for " 
-                            << r[i]->getPrice() << endl;
-                        r[i]->sold();
-                    }
-                }
-            }
+            cout << e[i];
         }
     }
-    /*void problem4()
+    void viewInventory(vector<RetailItem> r)
     {
-           cout<<"In problem # 4"<<endl<<endl;
-    }
-    void problem5()
-    {
-           cout<<"In problem # 5"<<endl<<endl;
-    }
+        for(int i=0;i<r.size();i++)
+        {
+            cout << r[i] << endl;
+        }
+    }/*
     void problem6()
     {
            cout<<"In problem # 6"<<endl<<endl;
@@ -195,31 +168,6 @@ void problem7();
     {
            cout<<"You typed "<<inN<<" to exit the program"<<endl;
     }
-    /*RetailItem** loadInventory()
-    {
-        int num_lines=0;
-        string line;
-        ifstream myfile("inventory.txt");
-        if(myfile.fail())
-        {
-            cout << "Error opening the file\n";
-        }
-        while(getline(myfile, line))
-            ++num_lines;
-        myfile.close();
-        myfile.open("inventory.txt");
-        RetailItem **r = new RetailItem*[num_lines];
-        for(int i=0;i<num_lines;i++){
-            r[i]=new RetailItem();
-            while (myfile >> r[i]){
-                cout << r[i]->getSKU() << endl;
-            }
-        }
-        
-        myfile.close();
-        return r;
-        //1002 SAMSUNG560GBHD 159.99 20
-    }*/
     void loadEmployees(vector<Employee> &emps)
     {
         int num_lines=0;
@@ -235,31 +183,23 @@ void problem7();
         num_employees=num_lines/9;
         myfile.close();
         myfile.open("employee.txt");
-        Employee e[num_employees];
+        Employee e;
         cout << num_employees << "NUM EMPLOYEES";
         for(int i=0;i<num_employees;i++)
         {
             getline(myfile, line);
-            e[i].setName(line);
+            e.setName(line);
             getline(myfile, line);
-            e[i].setAddress(line);
-            while (myfile >> e[i])
-            {
-                cout << e[i].getName() << " ";
-                cout << e[i].getAddress()<< " ";
-                cout << e[i].getCity()<< " ";
-                cout << endl;
-            }
-            emps.push_back(e[i]);
+            e.setAddress(line);
+            while (myfile >> e)
+    
+            emps.push_back(e);
         }
     }
     void loadInventory(vector<RetailItem> &item)
     {
         int num_lines=0;
         string line;
-        int sku, AOH;
-        string desc;
-        float price;
         ifstream myfile("inventory.txt");
         if(myfile.fail())
         {
@@ -269,19 +209,35 @@ void problem7();
             ++num_lines;
         myfile.close();
         myfile.open("inventory.txt");
-        RetailItem r[num_lines];
+        RetailItem r;
         for(int i=0;i<num_lines;i++){
-            myfile >> sku >> desc >> price >> AOH;
-            r[i].setSKU(sku); r[i].setDesc(desc); r[i].setPrice(price); r[i].setAOH(AOH);
-            /*while (myfile >> r[i]){
-                a[i]=r[i];
-                cout << a[i].getSKU() << endl;
-            }*/
-            item.push_back(r[i]);
+            while(myfile >> r)
+
+            item.push_back(r);
         }
    
         myfile.close();
-        //1002 SAMSUNG560GBHD 159.99 20
+    }
+    void Sale(vector<RetailItem>& r, vector<Employee>& e)
+    {
+        int sku,emp;
+        cout << "Please enter employee ID for sale";
+        cin >> emp;
+        cout << "Please enter the SKU";
+        cin >> sku;
+        for(int i=0;i<r.size();i++)
+        {
+            if(r[i].getSKU()==sku)
+            {
+                for(int i=0;i<e.size();i++)
+                {
+                    if (e[i].getEmpID()==emp){
+                        e[i].addSale(r[i].getPrice());
+                        r[i].sold();
+                    }
+                }
+            }
+        }
     }
 
 

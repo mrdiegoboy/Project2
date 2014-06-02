@@ -25,7 +25,8 @@ protected:
     int access;
     float sales;
 public:
-    friend istream& operator >> (istream&, Employee);
+    friend istream& operator >> (istream&, Employee&);
+    friend ostream& operator<<(ostream&, const Employee&);
     static int objectCount;
     Employee();
     string getName();
@@ -47,6 +48,7 @@ public:
     void resetPassword();
     void addSale(float);
     float getSales();
+    void printEmployee();
 };
 
 #endif	/* EMPLOYEE_H */

@@ -17,7 +17,7 @@ Employee::Employee()
     access=0;
     sales=0;
 }
-istream& operator >> (istream& in, Employee e)
+istream& operator >> (istream& in, Employee &e)
 {
     in >> e.city;
     in >> e.state;
@@ -104,4 +104,10 @@ float Employee::getSales()
 {
     return sales;
 }
-
+ostream& operator<<(ostream& os, const Employee& e)
+{
+    os << e.name << endl << e.address << endl
+            << e.city << ", " << e.state << " " << e.zip << endl
+            << "Total Sales: $" << e.sales;
+    return os;
+}
