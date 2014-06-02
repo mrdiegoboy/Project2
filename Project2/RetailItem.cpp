@@ -9,14 +9,14 @@
 #include "RetailItem.h"
 using namespace std;
 int RetailItem::objectCount=0;
-istream& operator >> (istream& in, RetailItem* r)
+/*istream& operator >> (istream& in, RetailItem r)
 {
-    in >> r->SKU;
-    in >> r->description;
-    in >> r->price;
-    in >> r->AOH;
+    in >> r.SKU;
+    in >> r.description;
+    in >> r.price;
+    in >> r.AOH;
     return in;
-}
+}*/
 RetailItem::RetailItem()
 {
     objectCount++;
