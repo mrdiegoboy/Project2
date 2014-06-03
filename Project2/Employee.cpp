@@ -111,3 +111,11 @@ ostream& operator<<(ostream& os, const Employee& e)
             << "Total Sales: $" << e.sales;
     return os;
 }
+string Employee::getPassword()
+{
+    return password;
+}
+float Employee::getWage()
+{
+    return wage;
+}

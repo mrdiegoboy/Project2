@@ -49,6 +49,8 @@ public:
     void addSale(float);
     float getSales();
     void printEmployee();
+    string getPassword();
+    float getWage();
 };
 
 #endif	/* EMPLOYEE_H */

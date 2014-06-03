@@ -62,4 +62,7 @@ ostream& operator<<(ostream& os, const RetailItem& r)
     os << r.SKU << " " << r.description << " " << r.price << " " << r.AOH;
     return os;
 }
-
+void RetailItem::receive()
+{
+    AOH++;
+}

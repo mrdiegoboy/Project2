@@ -32,6 +32,7 @@ public:
     float getPrice();
     int getAOH();
     void sold();
+    void receive();
 };
 
 

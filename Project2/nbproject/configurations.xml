@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="94">
+<configurationDescriptor version="90">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Employee.h</itemPath>
+      <itemPath>Register.h</itemPath>
       <itemPath>RetailItem.h</itemPath>
       <itemPath>Supervisor.h</itemPath>
     </logicalFolder>
@@ -16,6 +17,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Employee.cpp</itemPath>
+      <itemPath>Register.cpp</itemPath>
       <itemPath>RetailItem.cpp</itemPath>
       <itemPath>Supervisor.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -45,6 +47,10 @@
       <item path="Employee.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Employee.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Register.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Register.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RetailItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -80,6 +86,10 @@
       <item path="Employee.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Employee.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Register.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Register.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="RetailItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
