@@ -23,11 +23,12 @@ void loadInventory(vector<RetailItem>&);
 void loadEmployees(vector<Employee>&);
 void viewEmployees(vector<Employee>);
 void viewInventory(vector<RetailItem>);
-void Sale(vector<RetailItem>&, vector<Employee>&);
+void Sale(vector<RetailItem>&, vector<Employee>&, Register*);
 void saveEmployee(vector<Employee>);
 void saveInventory(vector<RetailItem>);
+void registerTotal(Register *);
+void deleteReg(Register *);
 /*
-void problem6();
 void problem7();
  
              cout << "Login\n" << endl;
@@ -57,7 +58,7 @@ void problem7();
               addSupervisor();
               break;
           case 3:    
-              Sale(inventory,emps);
+              Sale(inventory,emps,reg);
               break;
           case 4:    
               viewEmployees(emps);
@@ -65,11 +66,14 @@ void problem7();
           case 5:    
               viewInventory(inventory);
               break;
-          case 6:    ;break;
+          case 6:    
+              registerTotal(reg);
+              break;
           case 7:    ;break;
           default:   def(inN);}
         }while(inN<8);
         saveEmployee(emps);
+        deleteReg(reg);
         return 1;
     }
     void Menu()
@@ -79,7 +83,7 @@ void problem7();
            cout<<"Type 3 to add a sale"<<endl;
            cout<<"Type 4 View Employees"<<endl;
            cout<<"Type 5 View Inventory"<<endl;
-           cout<<"Type 6 for problem 6"<<endl;
+           cout<<"Type 6 to Display Register Totals"<<endl;
            cout<<"Type 7 for problem 7"<<endl;
            cout<<"Type 8 to exit \n"<<endl;
     }
@@ -171,16 +175,7 @@ void problem7();
         {
             cout << r[i] << endl;
         }
-    }/*
-    void problem6()
-    {
-           cout<<"In problem # 6"<<endl<<endl;
     }
-    void problem7()
-    {
-		cout<<"In problem # 7"<<endl<<endl;
-    }
-    */
     void def(int inN)
     {
            cout<<"You typed "<<inN<<" to exit the program"<<endl;
@@ -240,12 +235,14 @@ void problem7();
    
         myfile.close();
     }
-    void Sale(vector<RetailItem>& r, vector<Employee>& e)
+    void Sale(vector<RetailItem>& r, vector<Employee>& e, Register *reg)
     {
         int sku,emp;
-        cout << "Please enter employee ID for sale";
+        int menu;
+        float amt;
+        cout << "Please enter employee ID for sale: ";
         cin >> emp;
-        cout << "Please enter the SKU";
+        cout << "Please enter the SKU: ";
         cin >> sku;
         for(int i=0;i<r.size();i++)
         {
@@ -256,6 +253,32 @@ void problem7();
                     if (e[i].getEmpID()==emp){
                         e[i].addSale(r[i].getPrice());
                         r[i].sold();
+                        cout << "Selling item" << r[i].getDesc() 
+                                << "\t" << r[i].getPrice() << endl;
+                        cout << "Customer paying cash or check?" << endl;
+                        cout << "1 for Cash\n2 for Check: ";
+                        cin >> menu;
+                        switch (menu){
+                            case 1: 
+                                cout << "Enter amount customer paying for cash ";
+                                cin >> amt;
+                                reg->addCash(r[i].getPrice());
+                                cout << "Change due to customer $:"
+                                        << amt-r[i].getPrice();
+                                break;
+                            case 2:
+                                cout << "Enter amount on check";
+                                cin >> amt;
+                                while(amt!=r[i].getPrice())
+                                {
+                                    cout << "Amount of check must match amount "
+                                            << "of total.  Please re-enter amount ";
+                                    cin >> amt;
+                                }
+                                reg->addCheck(r[i].getPrice());
+                                cout << "Change due to customer $:"
+                                        << amt-r[i].getPrice();
+                        }
                     }
                 }
             }
@@ -289,6 +312,14 @@ void problem7();
             datafile << r[i].getSKU() << " " << r[i].getDesc() << " "
                     << r[i].getPrice() << " " << r[i].getAOH() << endl;
         }
+    }
+    void registerTotal(Register *r)
+    {
+        cout << r;
+    }
+    void deleteReg(Register *r)
+    {
+        delete r;
     }
 
 

@@ -35,7 +35,5 @@ public:
     void receive();
 };
 
-
-
 #endif	/* RETAILITEM_H */
 

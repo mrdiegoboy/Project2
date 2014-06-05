@@ -4,6 +4,8 @@
  *
  * Created on June 3, 2014, 12:31 AM
  */
+#include <iostream>
+using namespace std;
 
 #ifndef REGISTER_H
 #define	REGISTER_H
@@ -11,7 +13,7 @@
 class Register
 {
 private:
-    float cash_paid;
+    float cash_reg;
     float total_sales;
     float cash;
     int checks;
@@ -19,8 +21,9 @@ private:
     float change;
 public:
     Register();
+    friend ostream& operator<<(ostream&, const Register*);
     float getTotalSales();
-    float getCashSales();
+    float getCash();
     float getCashReg();
     int getChecks();
     float getChange();
