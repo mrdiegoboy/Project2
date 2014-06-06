@@ -5,20 +5,16 @@
  * Created on May 23, 2014, 11:13 PM
  */
 #include <iostream>
+#include "Person.h"
 
 using namespace std;
 
 #ifndef EMPLOYEE_H
 #define	EMPLOYEE_H
 
-class Employee
+class Employee : public Person
 {
 protected:
-    string name;
-    string address;
-    string city;
-    string state;
-    int zip;
     int employee_id;
     string password;
     float wage;
@@ -29,20 +25,10 @@ public:
     friend ostream& operator<<(ostream&, const Employee&);
     static int objectCount;
     Employee();
-    string getName();
-    string getAddress();
-    string getCity();
-    string getState();
-    int getZip();
     int getEmpID();
     bool checkPassword(string);
     void setPassword(string);
     int accessLevel();
-    void setName(string);
-    void setAddress(string);
-    void setCity(string);
-    void setState(string);
-    void setZip(int);
     void setEmpID(int);
     void setWage(float);
     void resetPassword();
@@ -51,6 +37,10 @@ public:
     void printEmployee();
     string getPassword();
     float getWage();
+    void clock_on();
+    void clock_off();
+    void lunch_on();
+    void lunch_off();
 };
 
 #endif	/* EMPLOYEE_H */
