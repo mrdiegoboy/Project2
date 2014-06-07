@@ -9,6 +9,7 @@ Register::Register()
     cash=100;
     total_sales=0;
     checks=0;
+    chk_total=0;
 }
 float Register::getTotalSales()
 {

@@ -101,42 +101,143 @@ void receiveItem(vector<RetailItem>&);
         int nums;
         float dec;
         cout << "Please enter employee first and last name: " << endl;
-        std::cin.sync(); 
+        cin.clear();
+        cin.ignore(10000,'\n');
         getline (cin, words);
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         emp.setName(words);
         cout << "Please enter address: " << endl;
         getline (cin, words);
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         emp.setAddress(words);
         cout << "Please enter city" << endl;
         cin >> words;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         emp.setCity(words);
         cout << "State: ";
         cin >> words;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         emp.setState(words);
         cout << "Zip: ";
         cin >> nums;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         emp.setZip(nums);
         cout << "Enter Wage greater than 0: ";
         cin >> dec;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         while(dec<0){
             cout << "Wage must be greater than 0";
             cin >> dec;
+            try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         }
         emp.setWage(dec);
         cout << "Employee successfully created\nPlease enter employee ID"
                 "to assign ";
         cin >> nums;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         for(int i=0;i<e.size();i++)
         {
             if(e[i].getEmpID()==nums)
             {
                 cout << "Employee ID already taken, please re-enter: ";
                 cin >> nums;
+                try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
             }
         }
         emp.setEmpID(nums);
         cout << "Please have employee enter a password " << endl;
         cin >> words;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         emp.setPassword(words);
         e.push_back(emp);
         
@@ -150,29 +251,100 @@ void receiveItem(vector<RetailItem>&);
         int nums;
         float dec;
         cout << "Please enter customer first and last name: " << endl;
-        std::cin.sync(); 
+        cin.clear();
+        cin.ignore(10000,'\n');
         getline (cin, words);
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         cust.setName(words);
         cout << "Please enter address: " << endl;
         getline (cin, words);
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         cust.setAddress(words);
         cout << "Please enter city" << endl;
         cin >> words;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         cust.setCity(words);
         cout << "State: ";
         cin >> words;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         cust.setState(words);
         cout << "Zip: ";
         cin >> nums;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         cust.setZip(nums);
         cout << "Would customer like to be on our mailing list? (y)es or (n)o";
         cin >> choice;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         switch(choice){
             case 'y':
             case 'Y':
                 cust.yestoSpam(true);
                 cout << "Please enter customer email address: ";
                 cin >> words;
+                try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
                 cust.setEmail(words);
                 break;
             case 'n':
@@ -268,6 +440,16 @@ void receiveItem(vector<RetailItem>&);
         int go_on=0;
         cout << "Please enter employee ID for sale: ";
         cin >> emp;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         for(int i=0;i<e.size();i++)
         {
             if(e[i].getEmpID()==emp)
@@ -278,6 +460,16 @@ void receiveItem(vector<RetailItem>&);
         if(go_on==1){
         cout << "Please enter the SKU: ";
         cin >> sku;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         for(int i=0;i<r.size();i++)
         {
             if(r[i].getSKU()==sku)
@@ -292,16 +484,30 @@ void receiveItem(vector<RetailItem>&);
                         cout << "Customer paying cash or check?" << endl;
                         cout << "1 for Cash\n2 for Check: ";
                         cin >> menu;
-                        while(menu!= 1 || menu !=2)
-                        {
-                            cout << "Invalid Choice.\n"
-                                    "1 for Cash\n2 for Check: ";
-                            cin >> menu;
-                        }
+                        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
                         switch (menu){
                             case 1: 
                                 cout << "Enter amount customer paying for cash ";
                                 cin >> amt;
+                                try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
                                 reg->addCash(r[i].getPrice());
                                 cout << "Change due to customer $:"
                                         << amt-r[i].getPrice();
@@ -309,11 +515,31 @@ void receiveItem(vector<RetailItem>&);
                             case 2:
                                 cout << "Enter amount on check";
                                 cin >> amt;
+                                try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
                                 while(amt!=r[i].getPrice())
                                 {
                                     cout << "Amount of check must match amount "
                                             << "of total.  Please re-enter amount ";
                                     cin >> amt;
+                                    try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
                                 }
                                 reg->addCheck(r[i].getPrice());
                                 cout << "Change due to customer $:"
@@ -409,6 +635,16 @@ void receiveItem(vector<RetailItem>&);
         int temp;
         cout << "Please enter sku you would like to receive: ";
         cin >> num;
+        try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
         for(int i=0;i<r.size();i++)
         {
             if(r[i].getSKU()==num)
@@ -416,6 +652,16 @@ void receiveItem(vector<RetailItem>&);
                 cout << "How many items are you receiving of "
                         << r[i].getDesc() << " :";
                 cin >> qty;
+                try{
+            if(cin.fail())
+            {
+                throw "error";
+            }
+        }
+        catch (char* error)
+        {
+            cout << error << endl;
+        }
                 temp=r[i].getAOH();
                 for(int j=0;j<qty;j++)
                     r[i].receive();
